@@ -7,12 +7,16 @@ import { ConfigService } from '@nestjs/config';
 @Injectable()
 export class AppService {
   private readonly apiEpisodesBaseUrl: string;
+  private readonly apiLocationsBaseUrl: string;
+  private readonly apiCharactersBaseUrl: string;
 
   constructor(
     private readonly httpService: HttpService,
-    private readonly configServie: ConfigService
+    private readonly configService: ConfigService
   ) {
-    this.apiEpisodesBaseUrl = this.configServie.get<string>("API_EPISODES_BASE_URL")
+    this.apiEpisodesBaseUrl = this.configService.get<string>("API_EPISODES_BASE_URL")
+    this.apiLocationsBaseUrl = this.configService.get<string>("API_LOCATIONS_BASE_URL")
+    this.apiCharactersBaseUrl = this.configService.get<string>("API_CHARACTERS_BASE_URL")
   }
 
   async getEpisodes(page: string): Promise<any> {
@@ -29,6 +33,37 @@ export class AppService {
       throw new Error("Failed to fetch Rick & Morty Episodes")
     }
 
-    // return `get page ${page} for rick & morty episodes`;
+  }
+
+  async getLocations(page: string): Promise<any> {
+
+    console.log({ api_url: this.apiLocationsBaseUrl })
+
+    try {
+      const res = await lastValueFrom(
+        this.httpService.get(`${this.apiLocationsBaseUrl}?page=${page}`),
+      );
+
+      return res.data;
+    } catch (error) {
+      throw new Error("Failed to fetch Rick & Morty Locations")
+    }
+
+  }
+
+  async getCharacters(page: string): Promise<any> {
+
+    console.log({ api_url: this.apiLocationsBaseUrl })
+
+    try {
+      const res = await lastValueFrom(
+        this.httpService.get(`${this.apiCharactersBaseUrl}?page=${page}`),
+      );
+
+      return res.data;
+    } catch (error) {
+      throw new Error("Failed to fetch Rick & Morty Characters")
+    }
+
   }
 }

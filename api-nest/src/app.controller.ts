@@ -6,13 +6,23 @@ export class AppController {
   constructor(private readonly appService: AppService) { }
 
   @Get("episodes")
-  async getEpisodes(@Query("page") page: string) {
-    if (!page) {
-      page = "1"
-    }
-
+  async getEpisodes(@Query("page") page: string = "1") {
     console.log({ page })
 
     return this.appService.getEpisodes(page);
+  }
+
+  @Get("locations")
+  async getLocations(@Query("page") page: string = "1") {
+    console.log({ page })
+
+    return this.appService.getLocations(page);
+  }
+
+  @Get("characters")
+  async getCharacters(@Query("page") page: string = "1") {
+    console.log({ page })
+
+    return this.appService.getCharacters(page);
   }
 }
