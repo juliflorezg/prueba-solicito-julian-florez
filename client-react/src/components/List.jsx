@@ -53,13 +53,13 @@ function List({ dataList, title, clickHandler }) {
               ))}
             </ul>
             {title.toLowerCase().includes("favorite") &&
-              <div className='flex justify-center cursor-pointer' onClick={() => clickHandler()}>
-                <button className='rounded-lg bg-slate-900 w-28 p-3'>Save my favorites in the cloud </button>
+              <div className='flex justify-center mt-4' >
+                <button className='rounded-lg bg-purple-800 hover:bg-purple-600 w-28 p-3 cursor-pointer font-bold transition-all' onClick={() => clickHandler()}>Save my favorites in the cloud </button>
               </div>
             }
           </>
 
-          : <p className='text-gray-900 text-xl mb-6'>There is no items in this list</p>
+          : <p className='text-gray-900 text-xl mb-6'>There are no items in this list</p>
         }
       </div>
     </article>
