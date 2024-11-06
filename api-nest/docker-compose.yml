@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: sampleuser
+      POSTGRES_PASSWORD: passwd123
+      POSTGRES_DB: rickandmortytest
+    ports:
+      - 5433:5432
