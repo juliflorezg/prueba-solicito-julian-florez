@@ -42,8 +42,7 @@ function CharacterInfoPage({ endpoint }) {
           <Error message={error} />
         ) : (
           <>
-            <article className="flex flex-col md:flex-row items-center justify-center gap-3 w-full px-4 bg-teal-100 py-4 md:py-8 text-slate-800">
-              <h1 className="text-blue-950">{data.name}</h1>
+            <article className="flex flex-col md:flex-row items-center justify-center gap-3 w-full px-4 bg-teal-50 py-4 md:py-8 text-slate-800">
               <div className="max-w-36">
                 <img
                   src={data.image || "https://upload.wikimedia.org/wikipedia/commons/1/19/Unknown_flag.svg"}
@@ -51,9 +50,18 @@ function CharacterInfoPage({ endpoint }) {
                   className="w-full"
                 />
               </div>
+              <h1 className="text-blue-950 font-bold">{data.name}</h1>
             </article>
 
-            <section className="mt-4 px-4">
+            <article className='bg-teal-50 text-slate-800 flex flex-col justify-center items-center pb-8'>
+              <p><span>Species:</span> <span>{data.species}</span></p>
+              <p><span>Gender:</span> <span>{data.gender}</span></p>
+              <p><span>Origin:</span> <span>{data.origin.name}</span></p>
+              <p><span>Location:</span> <span>{data.location.name}</span></p>
+
+            </article>
+
+            <article className="mt-4 px-4  max-w-80 mx-auto">
               <h2 className="text-lg font-semibold mb-2">Episodes:</h2>
               {loadingEpisodes ? (
                 <Loading message="Loading episodes..." />
@@ -64,7 +72,7 @@ function CharacterInfoPage({ endpoint }) {
                   ))}
                 </ul>
               )}
-            </section>
+            </article>
           </>
         )}
       </section>
