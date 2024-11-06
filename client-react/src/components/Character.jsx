@@ -14,7 +14,7 @@ export default function Character({ stats }) {
   const [showFavMsg, setShowFavMsg] = useState(false);
 
   const FavoriteMessage = () => (
-    <div className='absolute top-0 left-8 w-28 text-sm md:w-52 md:text-lg bg-rose-300 text-rose-950'>
+    <div className='absolute top-0 left-8 sm:top-full sm:left-auto sm:-right-1/2 w-28 text-sm md:w-52 md:text-lg bg-rose-300 text-rose-700'>
       <p className='text-center'>
         {isCharacterInFavs ?
           "Remove from Favorites"
@@ -51,13 +51,12 @@ export default function Character({ stats }) {
           <p>Location: {location?.name}</p>
         </div>
 
-        {/* <p>{isCharacterInFavs ? "is in" : "is not in favs"}</p> */}
-        <Link to={`/character/${id}`} className='w-1/4 text-center rounded-md bg-teal-400 text-slate-900 hover:bg-teal-200 transition-all'>
+        <Link to={`/character/${id}`} className='w-max px-2 text-center rounded-md bg-teal-400 text-slate-900 hover:bg-teal-200 transition-all'>
           More info
         </Link>
       </div>
       <div
-        className='relative w-6 cursor-pointer '
+        className='relative w-6 cursor-pointer h-6'
         onMouseEnter={() => setShowFavMsg(true)}
         onMouseLeave={() => setShowFavMsg(false)}
         onClick={handleSetFavorite}
