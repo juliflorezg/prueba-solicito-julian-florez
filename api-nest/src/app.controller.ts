@@ -30,7 +30,6 @@ export class AppController {
   async getCharacter(@Param("id") id: string = "1") {
     console.log({ id })
 
-    // return this.appService.getCharacters(page);
-    return `this endpoint returns info for character ${id}`;
+    return this.appService.getSingleCharacter(id);
   }
 }
