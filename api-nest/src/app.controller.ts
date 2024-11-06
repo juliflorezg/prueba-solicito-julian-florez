@@ -1,4 +1,4 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller("v1/api-rick-morty")
@@ -24,5 +24,13 @@ export class AppController {
     console.log({ page })
 
     return this.appService.getCharacters(page);
+  }
+
+  @Get("character/:id")
+  async getCharacter(@Param("id") id: string = "1") {
+    console.log({ id })
+
+    // return this.appService.getCharacters(page);
+    return `this endpoint returns info for character ${id}`;
   }
 }

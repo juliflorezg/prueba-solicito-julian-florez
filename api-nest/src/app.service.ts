@@ -53,11 +53,27 @@ export class AppService {
 
   async getCharacters(page: string): Promise<any> {
 
-    console.log({ api_url: this.apiLocationsBaseUrl })
+    console.log({ api_url: this.apiCharactersBaseUrl })
 
     try {
       const res = await lastValueFrom(
         this.httpService.get(`${this.apiCharactersBaseUrl}?page=${page}`),
+      );
+
+      return res.data;
+    } catch (error) {
+      throw new Error("Failed to fetch Rick & Morty Characters")
+    }
+
+  }
+
+  async getSingleCharacter(id: string): Promise<any> {
+
+    console.log({ api_url: this.apiCharactersBaseUrl })
+
+    try {
+      const res = await lastValueFrom(
+        this.httpService.get(`${this.apiCharactersBaseUrl}/${id}`),
       );
 
       return res.data;
