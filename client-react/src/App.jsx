@@ -4,6 +4,7 @@ import TabComponent from './components/TabComponent'
 import GlobalDataContext from './store/globalDataContext';
 import { useState } from 'react';
 import FavoritesPage from './components/FavoritesPage';
+import CharacterInfoPage from './components/CharacterInfoPage';
 
 function App() {
 
@@ -17,6 +18,8 @@ function App() {
             <Route path="/episodes" element={<Page endpoint="api-rick-morty/episodes?page=1" listName="episodes" />} />
             <Route path="/locations" element={<Page endpoint="api-rick-morty/locations?page=1" listName="locations" />} />
             <Route path="/characters" element={<Page endpoint="api-rick-morty/characters?page=1" listName="characters" />} />
+            <Route path="/character/:id" element={<CharacterInfoPage endpoint="api-rick-morty/character" />} />
+
             <Route path="/favorites" element={<FavoritesPage listName="favorites" />} />
           </Routes>
         </Router>
