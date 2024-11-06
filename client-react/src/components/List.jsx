@@ -1,7 +1,41 @@
 import React from 'react';
 import Character from './Character';
 
-function List({ dataList, title, clickHandler }) {
+function List({ dataList, dataInfo, title, clickHandler }) {
+
+
+  const PaginationButtons = () => {
+
+    const buttonClickHandler = (url) => {
+      const newUrl = new URL(url)
+      const urlParams = new URLSearchParams(newUrl.search)
+      const page = urlParams.get("page")
+
+      clickHandler(prev => {
+        return prev.slice(0, -1) + page
+      })
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+    return (
+      <div className='mt-8 flex justify-center gap-2 md:gap-8'>
+        {dataInfo.prev &&
+          <button className="p-1 px-3 bg-emerald-400 text-slate-900 rounded-md border-2 border-slate-900" onClick={() => buttonClickHandler(dataInfo.prev)}>
+            Previous page
+          </button>
+        }
+        {dataInfo.next &&
+          <button className="p-1 px-3 bg-emerald-400 text-slate-900 rounded-md border-2 border-slate-900" onClick={() => buttonClickHandler(dataInfo.next)}>
+            Next page
+          </button>
+        }
+      </div>
+    )
+  }
 
 
 
@@ -56,6 +90,9 @@ function List({ dataList, title, clickHandler }) {
               <div className='flex justify-center mt-4' >
                 <button className='rounded-lg bg-purple-800 hover:bg-purple-600 w-28 p-3 cursor-pointer font-bold transition-all' onClick={() => clickHandler()}>Save my favorites in the cloud </button>
               </div>
+            }
+            {
+              dataInfo && <PaginationButtons />
             }
           </>
 
